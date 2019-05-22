@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+div class="row">
+	<div class="col-2">
+		<img src="{{ product.image.url }}" class="img-fluid" style="width:100px;height:100px; />
+	</div>
+	<div class="col-10">
+	<h4>Name : {{product.name}}</h4>
+	</div>
+	
+	<div class="col-10">
+	<h4>Cost : {{product.cost}}</h4>
+	</div>
+	
+	<div class="col-10">
+	<h4>Description : {{product.description}}</h4>
+	</div>
+</div>
+
+
+<form method="post" action="{% url 'add_to_cart' product.id %}">
+      {% csrf_token %}
+        <div class="input-group">
+          <input name="quantity" type="number" min="1" max="999" class="form-control form-size" placeholder="Quantity">
+               <span class="input-group-btn">
+                <button class="btn btn-success" type="submit">Add</button>
+                  </span>
+        </div>
+ </form>
+
+    
+{% endblock %}
